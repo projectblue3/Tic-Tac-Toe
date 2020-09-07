@@ -1,6 +1,6 @@
-body{
+body {
     background: #00bcd4;
-    height: 100vh;
+    height: 95vh;
     display: grid;
     justify-items: center;
     align-content: center;
@@ -8,11 +8,17 @@ body{
     font-family: monospace;
 }
 
-#theTitle{
+#theTitle {
     font-size: 3rem;
+    margin: 0;
+    padding: 0;
 }
 
-#gameBoard{
+#gameStatus {
+    color: white;
+}
+
+#gameBoard {
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
