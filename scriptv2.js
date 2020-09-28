@@ -118,5 +118,5 @@ function checkAll(boardIndex) {
 for (let i = 0; i < boardPieces.length; i++) {
     boardPieces[i].addEventListener('click', e => {
         checkAll(i);
-    })
+    });
 }
