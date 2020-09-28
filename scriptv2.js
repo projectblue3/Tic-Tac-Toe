@@ -48,15 +48,18 @@ function checkForWin() {
             total += boardValue;
         }
 
-        if (total === 3) {
-            winner = "X";
-        } else if (total === 30) {
-            winner = "O";
+        switch (total){
+            case 3:
+                winner = "X";
+                break;
+            case 30:
+                winner = "O";
+                break;
         }
+    }
 
-        if (turn === 9){
-            winner = "Draw";
-        }
+    if (turn === 9 && winner === null){
+        winner = "Draw";
     }
 }
 
