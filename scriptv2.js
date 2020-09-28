@@ -1,24 +1,14 @@
 /*
-Second version of my tic tac toe game >:)
-More modular and now using arrays to check for a winner
-Will update again when I learn more about the DOM
-Also need to find an XO graphic to use on hover
+Third version of my tic tac toe game
+Cleaned up the DOM code after learning a bit more about it
+Still need to find an XO graphic to use on hover then do a few touch ups and I'm pretty much done with this
 */
 
+
 //pull from DOM
-const topLeft = document.getElementById("space00");
-const topMid = document.getElementById("space01");
-const topRight = document.getElementById("space02");
-
-const midLeft = document.getElementById("space10");
-const midMid = document.getElementById("space11");
-const midRight = document.getElementById("space12");
-
-const bottomLeft = document.getElementById("space20");
-const bottomMid = document.getElementById("space21");
-const bottomRight = document.getElementById("space22");
-
 const gameStatus = document.getElementById("gameStatus");
+const boardPieces = document.querySelectorAll('.boardSpace');
+
 
 //Player logic
 let turn = 0;
@@ -70,6 +60,7 @@ function checkForWin() {
     }
 }
 
+
 //UI
 function domConvert(boardIndex) {
     switch (gameBoard[boardIndex]) {
@@ -90,15 +81,9 @@ function updateBoard(){
         gameStatus.innerText = "It's Player X's Turn!";
     }
 
-    topLeft.innerHTML = `<p>${domConvert(0)}</p>`;
-    topMid.innerHTML = `<p>${domConvert(1)}</p>`;
-    topRight.innerHTML = `<p>${domConvert(2)}</p>`;
-    midLeft.innerHTML = `<p>${domConvert(3)}</p>`;
-    midMid.innerHTML = `<p>${domConvert(4)}</p>`;
-    midRight.innerHTML = `<p>${domConvert(5)}</p>`;
-    bottomLeft.innerHTML = `<p>${domConvert(6)}</p>`;
-    bottomMid.innerHTML = `<p>${domConvert(7)}</p>`;
-    bottomRight.innerHTML = `<p>${domConvert(8)}</p>`;
+    for (let i = 0; i < boardPieces.length; i++){
+        boardPieces[i].innerHTML = `<p>${domConvert(i)}</p>`;
+    }
 
     if (winner === "X"){
         gameStatus.innerText = "Player X is the winner! click board to refresh";
@@ -114,6 +99,7 @@ function updateBoard(){
     }
 }
 
+
 //Game loop
 function checkAll(boardIndex) {
     if (winner === null) {
@@ -127,52 +113,10 @@ function checkAll(boardIndex) {
 
 }
 
+
 //Event Listeners
-topLeft.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(0);
-})
-
-topMid.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(1);
-})
-
-topRight.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(2);
-})
-
-
-
-midLeft.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(3);
-})
-
-midMid.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(4);
-})
-
-midRight.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(5);
-})
-
-
-
-bottomLeft.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(6);
-})
-
-bottomMid.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(7);
-})
-
-bottomRight.addEventListener("click", e => {
-    e.preventDefault();
-    checkAll(8);
-})
+for (let i = 0; i < boardPieces.length; i++) {
+    boardPieces[i].addEventListener('click', e => {
+        checkAll(i);
+    })
+}
